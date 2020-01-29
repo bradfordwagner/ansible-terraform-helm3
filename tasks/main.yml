@@ -4,3 +4,6 @@
 - name: hello world
   debug:
     msg: hello my friends
+- name: ensure go exists
+  stat:
+    path: /usr/local/go
