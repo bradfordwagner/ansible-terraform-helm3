@@ -1,2 +1,6 @@
 ---
 # tasks file for bradfordwagner.terraform-helm3
+
+- name: hello world
+  debug:
+    msg: hello my friends
