@@ -14,4 +14,7 @@ go_starting_location: /usr/local/go/bin/go
 plugin_binary_name: terraform-provider-helm
 
 # location to install terraform helm plugin
-plugin_destination: ~/.terraform.d/plugins
+plugin_destination: '{{ ansible_env.HOME }}/.terraform.d/plugins'
+
+# location where we know the go libraries are being installed - this is for cleanup purposes only
+go_path: '{{ ansible_env.HOME }}/go'
