@@ -1,4 +1,4 @@
-bradfordwagner.terraform_helm3
+bradfordwagner.terraform-helm3
 ==================
 [![Build Status](https://travis-ci.org/bradfordwagner/ansible-terraform-helm3.svg?branch=master)](https://travis-ci.org/bradfordwagner/ansible-terraform-helm3)
 
