@@ -1,2 +1,17 @@
 ---
 # defaults file for bradfordwagner.terraform-helm3
+
+# based on the merge request
+# https://github.com/terraform-providers/terraform-provider-helm/issues/299#issuecomment-576830992
+terraform_helm_repo: https://github.com/aaronmell/terraform-provider-helm.git
+terraform_helm_version: 0ab4bd2cbe770c3983dcd494cd0cc5082cdf86b1
+
+workspace: /tmp
+
+# location in which go was installed
+go_starting_location: /usr/local/go/bin/go
+
+plugin_binary_name: terraform-provider-helm
+
+# location to install terraform helm plugin
+plugin_destination: ~/.terraform.d/plugins

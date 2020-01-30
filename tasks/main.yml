@@ -1,9 +1,38 @@
 ---
 # tasks file for bradfordwagner.terraform-helm3
+- name: setup go
+  block:
+  - name: copy go to path
+    copy:
+      src: '{{ go_starting_location }}'
+      dest: '/usr/local/bin'
+      mode: 555
+- name: setup terraform helm plugin
+  block:
+  - name: cloning terraform helm provider repository
+    git:
+      repo: '{{ terraform_helm_repo }}'
+      dest: '{{ repo_target }}'
+      version: '{{ terraform_helm_version }}'
+  - name: build plugin
+    shell: 'CGO_ENABLED=0; go build -v .'
+    args:
+      chdir: '{{ repo_target }}'
 
-- name: hello world
-  debug:
-    msg: hello my friends
-- name: ensure go exists
-  stat:
-    path: /usr/local/go
+- name: package
+  block:
+  - name: create plugin destination directory {{ plugin_destination }}
+    file:
+      path: '{{ plugin_destination }}'
+      state: directory
+  - name: copying {{ repo_target }}/{{ plugin_binary_name }} -> {{ plugin_destination }}
+    copy:
+      src: '{{ repo_target }}/{{ plugin_binary_name }}'
+      dest: '{{ plugin_destination }}/{{ plugin_binary_name }}'
+
+- name: clean up
+  block:
+    - name: removing plugin repo
+      file:
+        path: '{{ repo_target }}'
+        state: absent

@@ -1,2 +1,4 @@
 ---
 # vars file for bradfordwagner.terraform-helm3
+
+repo_target: '{{ workspace }}/helm-provider'
