@@ -1,10 +1,10 @@
 galaxy_info:
+  name: terraform-helm3
   author: Bradford Wagner
   description: install terraform helm3 provider from this merge request https://github.com/terraform-providers/terraform-provider-helm/issues/299#issuecomment-576830992 in order to get helm3 support before it is officially released.
   company: BlackRock
   license: MIT
   min_ansible_version: 2.9
-  name: terraform-helm3
   platforms:
     - name: EL
       versions:
