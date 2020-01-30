@@ -3,10 +3,10 @@
 - name: setup go
   block:
   - name: copy go to path
-    copy:
+    file:
+      path: '/usr/local/bin/go'
       src: '{{ go_starting_location }}'
-      dest: '/usr/local/bin'
-      mode: 555
+      state: link
 - name: setup terraform helm plugin
   block:
   - name: cloning terraform helm provider repository
@@ -15,7 +15,7 @@
       dest: '{{ repo_target }}'
       version: '{{ terraform_helm_version }}'
   - name: build plugin
-    shell: 'CGO_ENABLED=0; go build -v .'
+    shell: 'CGO_ENABLED=0; go build .'
     args:
       chdir: '{{ repo_target }}'
 
@@ -25,10 +25,10 @@
     file:
       path: '{{ plugin_destination }}'
       state: directory
-  - name: copying {{ repo_target }}/{{ plugin_binary_name }} -> {{ plugin_destination }}
-    copy:
-      src: '{{ repo_target }}/{{ plugin_binary_name }}'
-      dest: '{{ plugin_destination }}/{{ plugin_binary_name }}'
+- name: copying {{ repo_target }}/{{ plugin_binary_name }} -> {{ plugin_destination }}
+  copy:
+    src: '{{ repo_target }}/{{ plugin_binary_name }}'
+    dest: '{{ plugin_destination }}/{{ plugin_binary_name }}'
 
 - name: clean up
   block:
