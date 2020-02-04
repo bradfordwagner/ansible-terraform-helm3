@@ -1,5 +1,6 @@
 ---
 # tasks file for bradfordwagner.terraform-helm3
+
 - name: setup go
   block:
   - name: copy go to path
@@ -15,7 +16,7 @@
       dest: '{{ repo_target }}'
       version: '{{ terraform_helm_version }}'
   - name: build plugin
-    shell: 'CGO_ENABLED=0; go build .'
+    shell: 'CGO_ENABLED=0; go build -o {{ plugin_binary_name }} .'
     args:
       chdir: '{{ repo_target }}'
 
