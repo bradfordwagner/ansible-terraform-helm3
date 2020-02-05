@@ -28,6 +28,7 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
+  role_name: terraform_helm3
 dependencies:
 - role: andrewrothstein.git
   version: v3.0.5
